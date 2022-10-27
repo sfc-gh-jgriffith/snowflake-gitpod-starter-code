@@ -1,2 +1,4 @@
 streamlit
-snowflake-connector-python
+snowflake-connector-python[pandas]==2.8.0
+seaborn
+matplotlib
