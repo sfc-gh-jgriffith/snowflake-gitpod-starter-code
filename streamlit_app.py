@@ -7,7 +7,7 @@ from time import sleep
 import seaborn as sns
 import matplotlib.pyplot as plt
  
- 
+st.image('snowmeter.png')
 # Initialize connection, using st.experimental_singleton to only run once.
 @st.experimental_singleton
 def init_connection():
@@ -198,6 +198,12 @@ def sidebar_snowflake():
 def sidebar_databricks():
     st.sidebar.header('Databricks Configuration')
     selected_cluster = st.sidebar.selectbox("Cluster", ['Slow Cluster', 'Slower Cluster'])
+    if selected_cluster == 'Slower Cluster':
+        st.session_state.warehouse_name = 'DATABRICKS_MEDIUM'
+    elif selected_cluster == 'Slow Cluster':
+        st.session_state.warehouse_name = 'DATABRICKS_LARGE'
+    use_warehouse()
+
 
 st.session_state.sql_statement = f"""select
        l_returnflag,
